@@ -1,2 +1,4 @@
 # LeanTeX-mathlib
-LeanTeX pretty printers for mathlib
+
+[LeanTeX](https://github.com/kmill/LeanTeX) pretty printers for Mathlib.
+
