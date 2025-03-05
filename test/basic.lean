@@ -11,6 +11,7 @@ def f : Nat → Nat → Nat := λ x y => x + y
 
 def g : Unit → Nat := λ _ => 22
 
+section
 variable (b : Nat) (s : Finset Nat) (t : Nat → Finset Nat) (c : Nat → Real → Real) (x : Real)
 
 /-- info: \sum_{x \in s}(x + 1) -/
@@ -56,3 +57,26 @@ latex_pp_app_rules (kind := any) (paramKinds := params)
 #texify s.sum (λ x => x + 1) * s.sum (λ x => 2 * x)
 #texify λ (c : Nat) => c * s.sum (λ x => (t x).sum (λ y => x * y))
 #texify s.sum id
+
+#texify Real.arcsin (Real.cos 2)
+
+end
+
+-- https://github.com/ldct/LeanGT/blob/main/LeanGT/TexifyDemo.lean
+
+example (a b c : ℝ)
+    (ha : 0 < a) (hb : 0 < b) (hc : 0 < c) (h : a*b*c = 1) :
+    3 ≤ Real.sqrt ((a + b) / (a + 1)) + Real.sqrt ((b + c) / (b + 1)) + Real.sqrt ((c + a) / (c + 1)) := by
+  texify
+  sorry
+
+example (n : ℕ) : ∑ i ∈ Finset.range n, i = n * (n - 1) / 2 := by
+  texify
+  sorry
+
+theorem imo1966_p4 (n : ℕ) (x : ℝ)
+    (hx : ∀ t : ℕ, ∀ k : ℤ, x ≠ k * Real.pi / 2^t) :
+    ∑ i ∈ Finset.range n, 1 / Real.sin (2^(i + 1) * x) =
+    1 / Real.tan x - 1 / Real.tan (2^n * x) := by
+  texify
+  sorry
