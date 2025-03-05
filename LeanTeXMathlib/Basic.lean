@@ -130,3 +130,27 @@ latex_pp_app_rules (const := Finset.range)
   | _, #[hi] => do
     let hi ← latexPP hi
     return "[0, " ++ hi ++ ")" |>.resetBP .Infinity .Infinity
+
+latex_pp_app_rules (const := DirectSum)
+  | _, #[ι, β, _inst] => do
+    let pι ← withExtraSmallness 2 <| latexPP ι
+    withBindingBodyUnusedName' β `i fun name body => do
+      let pbody ← latexPP body
+      let psum := (← (LatexData.atomString "\\bigoplus" |>.bigger 1).sub (s!"{name.toLatex} \\in " ++ pι) |>.maybeWithTooltip "DirectSum") ++ pbody
+      return psum |>.resetBP (rbp := .NonAssoc 0)
+
+latex_pp_app_rules (const := TensorProduct)
+  | _, #[R, _, M, N, _, _, _, _] => do
+    let pR ← latexPP R
+    let pM ← latexPP M
+    let pN ← latexPP N
+    return pM.protectRight 100 ++ (LatexData.atomString "\\otimes" |>.sub pR) ++ pN.protectLeft 100
+
+latex_pp_app_rules (const := PiTensorProduct)
+  | _, #[ι, R, _, s, _, _] => do
+    let pι ← latexPP ι
+    let _pR ← latexPP R
+    withBindingBodyUnusedName' s `i fun name body => do
+      let pbody ← latexPP body
+      let psum := (← (LatexData.atomString "\\bigotimes" |>.bigger 1).sub (s!"{name.toLatex} \\in " ++ pι) |>.maybeWithTooltip "PiTensorProduct") ++ pbody
+      return psum |>.resetBP (rbp := .NonAssoc 0)
