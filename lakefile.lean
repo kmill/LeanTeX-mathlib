@@ -10,6 +10,7 @@ package "LeanTeX_Mathlib" where
   ]
 
 require "leanprover-community" / "mathlib"
+require "kmill" / "LeanTeX"
 
 @[default_target]
 lean_lib «LeanTeXMathlib» where
