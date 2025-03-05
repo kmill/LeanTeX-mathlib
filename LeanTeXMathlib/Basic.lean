@@ -50,4 +50,6 @@ latex_pp_app_rules (const := Finset.sum)
       return psum |>.resetBP (lbp := .Infinity) |>.mergeBP (rbp := .NonAssoc 65)
 
 latex_pp_const_rule Rat := (LatexData.atomString "\\mathbb{Q}").maybeWithTooltip "Rat"
+
 latex_pp_const_rule Real := (LatexData.atomString "\\mathbb{R}").maybeWithTooltip "Real"
+latex_pp_const_rule Real.pi := LatexData.atomString "\\pi" |>.maybeWithTooltip "real.pi"

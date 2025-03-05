@@ -5,7 +5,7 @@
    "type": "git",
    "subDir": null,
    "scope": "kmill",
-   "rev": "3bd8c91e567269609a0ad6ec9eaf04da3bb4fe08",
+   "rev": "24765e5183732f983a3d1b434c29278ceb2cadb4",
    "name": "LeanTeX",
    "manifestFile": "lake-manifest.json",
    "inputRev": "main",

@@ -7,9 +7,6 @@ open Lean
 
 def a : Nat := 22
 
-open Real LeanTeX in
-latex_pp_const_rule Real.pi := LatexData.atomString "\\pi" |>.maybeWithTooltip "real.pi"
-
 def f : Nat → Nat → Nat := λ x y => x + y
 
 def g : Unit → Nat := λ _ => 22
