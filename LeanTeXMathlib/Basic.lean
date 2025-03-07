@@ -152,3 +152,8 @@ latex_pp_app_rules (const := Min.min)
     let a ← LeanTeX.latexPP a
     let b ← LeanTeX.latexPP b
     return "\\min(" ++ a ++ "," ++ b ++ ")" |>.resetBP .Infinity .Infinity
+
+latex_pp_app_rules (const := Singleton.singleton)
+  | _, #[_, _, _, a] => do
+    let a ← LeanTeX.latexPP a
+    return "\\{ " ++ a ++ " \\}" |>.resetBP .Infinity .Infinity
