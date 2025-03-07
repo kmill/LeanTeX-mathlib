@@ -130,3 +130,25 @@ latex_pp_app_rules (const := Finset.range)
   | _, #[hi] => do
     let hi ← latexPP hi
     return "[0, " ++ hi ++ ")" |>.resetBP .Infinity .Infinity
+
+latex_pp_app_rules (const := Nat.ceil)
+  | _, #[_, _, _, e] => do
+    let e ← LeanTeX.latexPP e
+    return "\\left\\lceil " ++ e ++ "\\right\\rceil" |>.resetBP .Infinity .Infinity
+
+latex_pp_app_rules (const := Nat.floor)
+  | _, #[_, _, _, e] => do
+    let e ← LeanTeX.latexPP e
+    return "\\left\\lfloor " ++ e ++ "\\right\\rfloor" |>.resetBP .Infinity .Infinity
+
+latex_pp_app_rules (const := Max.max)
+  | _, #[_, _, a, b] => do
+    let a ← LeanTeX.latexPP a
+    let b ← LeanTeX.latexPP b
+    return "\\max(" ++ a ++ "," ++ b ++ ")" |>.resetBP .Infinity .Infinity
+
+latex_pp_app_rules (const := Min.min)
+  | _, #[_, _, a, b] => do
+    let a ← LeanTeX.latexPP a
+    let b ← LeanTeX.latexPP b
+    return "\\min(" ++ a ++ "," ++ b ++ ")" |>.resetBP .Infinity .Infinity
