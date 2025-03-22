@@ -60,6 +60,11 @@ latex_pp_app_rules (kind := any) (paramKinds := params)
 
 #texify Real.arcsin (Real.cos 2)
 
+open scoped DirectSum
+
+#texify ⨁ i, (Fin i → ℝ)
+#texify (⨁ i, Fin (i + 1)) → ℝ
+
 end
 
 -- https://github.com/ldct/LeanGT/blob/main/LeanGT/TexifyDemo.lean
