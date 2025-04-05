@@ -60,6 +60,31 @@ latex_pp_app_rules (kind := any) (paramKinds := params)
 
 #texify Real.arcsin (Real.cos 2)
 
+
+/-- info: (0, \frac{\pi}{2}) -/
+#guard_msgs in #latex Set.Ioo 0 (Real.pi / 2)
+
+/-- info: [0, \frac{\pi}{2}) -/
+#guard_msgs in #latex Set.Ico 0 (Real.pi / 2)
+
+/-- info: (0, \frac{\pi}{2}] -/
+#guard_msgs in #latex Set.Ioc 0 (Real.pi / 2)
+
+/-- info: [0, \frac{\pi}{2}] -/
+#guard_msgs in #latex Set.Icc 0 (Real.pi / 2)
+
+/-- info: (-\infty, 5) -/
+#guard_msgs in #latex Set.Iio 5
+
+/-- info: (-\infty, 5] -/
+#guard_msgs in #latex Set.Iic 5
+
+/-- info: [5, \infty) -/
+#guard_msgs in #latex Set.Ici 5
+
+/-- info: (5, \infty) -/
+#guard_msgs in #latex Set.Ioi 5
+
 open scoped DirectSum
 
 #texify ⨁ i, (Fin i → ℝ)
