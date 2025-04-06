@@ -201,6 +201,12 @@ latex_pp_app_rules (const := Inv.inv)
     let a ← LeanTeX.latexPP a
     return a.protectRight 100 ++ LatexData.atomString "^{-1}"
 
+latex_pp_app_rules (const := HSMul.hSMul)
+  | _, #[_, _, _, _, a, b] => do
+    let a ← LeanTeX.latexPP a
+    let b ← LeanTeX.latexPP b
+    return "(" ++ a ++ " \\cdot " ++ b ++ ")" |>.resetBP .Infinity .Infinity
+
 latex_pp_app_rules (const := DirectSum)
   | _, #[ι, β, _inst] => do
     let pι ← withExtraSmallness 2 <| latexPP ι
