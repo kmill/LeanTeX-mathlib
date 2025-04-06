@@ -85,6 +85,9 @@ latex_pp_app_rules (kind := any) (paramKinds := params)
 /-- info: (5, \infty) -/
 #guard_msgs in #latex Set.Ioi 5
 
+/-- info: 3^{-1} -/
+#guard_msgs in #latex (3:ℝ)⁻¹
+
 open scoped DirectSum
 
 #texify ⨁ i, (Fin i → ℝ)

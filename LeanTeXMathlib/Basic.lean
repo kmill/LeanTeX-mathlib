@@ -196,6 +196,11 @@ latex_pp_app_rules (const := Singleton.singleton)
     let a ← LeanTeX.latexPP a
     return "\\{ " ++ a ++ " \\}" |>.resetBP .Infinity .Infinity
 
+latex_pp_app_rules (const := Inv.inv)
+  | _, #[_, _, a] => do
+    let a ← LeanTeX.latexPP a
+    return a.protectRight 100 ++ LatexData.atomString "^{-1}"
+
 latex_pp_app_rules (const := DirectSum)
   | _, #[ι, β, _inst] => do
     let pι ← withExtraSmallness 2 <| latexPP ι
