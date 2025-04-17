@@ -126,6 +126,44 @@ latex_pp_app_rules (const := Finset.Ioi)
     let lo ← latexPP lo
     return "(" ++ lo ++ ", \\infty)" |>.resetBP .Infinity .Infinity
 
+latex_pp_app_rules (const := Set.Icc)
+  | _, #[_, _, lo, hi] => do
+    let lo ← latexPP lo
+    let hi ← latexPP hi
+    return "[" ++ lo ++ ", " ++ hi ++ "]" |>.resetBP .Infinity .Infinity
+latex_pp_app_rules (const := Set.Ico)
+  | _, #[_, _, lo, hi] => do
+    let lo ← latexPP lo
+    let hi ← latexPP hi
+    return "[" ++ lo ++ ", " ++ hi ++ ")" |>.resetBP .Infinity .Infinity
+latex_pp_app_rules (const := Set.Ioc)
+  | _, #[_, _, lo, hi] => do
+    let lo ← latexPP lo
+    let hi ← latexPP hi
+    return "(" ++ lo ++ ", " ++ hi ++ "]" |>.resetBP .Infinity .Infinity
+latex_pp_app_rules (const := Set.Ioo)
+  | _, #[_, _, lo, hi] => do
+    let lo ← latexPP lo
+    let hi ← latexPP hi
+    return "(" ++ lo ++ ", " ++ hi ++ ")" |>.resetBP .Infinity .Infinity
+
+latex_pp_app_rules (const := Set.Iio)
+  | _, #[_, _, hi] => do
+    let hi ← latexPP hi
+    return "(-\\infty, " ++ hi ++ ")" |>.resetBP .Infinity .Infinity
+latex_pp_app_rules (const := Set.Iic)
+  | _, #[_, _, lo] => do
+    let lo ← latexPP lo
+    return "(-\\infty, " ++ lo ++ "]" |>.resetBP .Infinity .Infinity
+latex_pp_app_rules (const := Set.Ici)
+  | _, #[_, _, lo] => do
+    let lo ← latexPP lo
+    return "[" ++ lo ++ ", \\infty)" |>.resetBP .Infinity .Infinity
+latex_pp_app_rules (const := Set.Ioi)
+  | _, #[_, _, lo] => do
+    let lo ← latexPP lo
+    return "(" ++ lo ++ ", \\infty)" |>.resetBP .Infinity .Infinity
+
 latex_pp_app_rules (const := Finset.range)
   | _, #[hi] => do
     let hi ← latexPP hi
@@ -158,6 +196,17 @@ latex_pp_app_rules (const := Singleton.singleton)
     let a ← LeanTeX.latexPP a
     return "\\{ " ++ a ++ " \\}" |>.resetBP .Infinity .Infinity
 
+latex_pp_app_rules (const := Inv.inv)
+  | _, #[_, _, a] => do
+    let a ← LeanTeX.latexPP a
+    return a.protectRight 100 ++ LatexData.atomString "^{-1}"
+
+latex_pp_app_rules (const := HSMul.hSMul)
+  | _, #[_, _, _, _, a, b] => do
+    let a ← LeanTeX.latexPP a
+    let b ← LeanTeX.latexPP b
+    return "(" ++ a ++ " \\cdot " ++ b ++ ")" |>.resetBP .Infinity .Infinity
+
 latex_pp_app_rules (const := DirectSum)
   | _, #[ι, β, _inst] => do
     let pι ← withExtraSmallness 2 <| latexPP ι
@@ -181,4 +230,3 @@ latex_pp_app_rules (const := PiTensorProduct)
       let pbody ← latexPP body
       let psum := (← (LatexData.atomString "\\bigotimes" |>.bigger 1).sub (s!"{name.toLatex} \\in " ++ pι) |>.maybeWithTooltip "PiTensorProduct") ++ pbody
       return psum |>.resetBP (rbp := .NonAssoc 0)
-
